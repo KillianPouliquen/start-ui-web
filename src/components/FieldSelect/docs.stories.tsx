@@ -15,7 +15,7 @@ export default {
 };
 
 export const Default = () => (
-  <Formiz>
+  <Formiz autoForm onChange={console.log}>
     <FieldSelect
       name="colors"
       label="Colors"
@@ -23,6 +23,21 @@ export const Default = () => (
       helper="This is an helper"
       required="Color is required"
       options={colors}
+    />
+  </Formiz>
+);
+
+export const DefaultValue = () => (
+  <Formiz autoForm onChange={console.log}>
+    <FieldSelect
+      name="colors"
+      label="Colors"
+      placeholder="Placeholder"
+      helper="This is an helper"
+      required="Color is required"
+      defaultValue={colors[0].value}
+      options={colors}
+      selectProps={{ isClearable: true }}
     />
   </Formiz>
 );

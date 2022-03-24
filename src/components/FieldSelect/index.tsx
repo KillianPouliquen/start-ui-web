@@ -50,7 +50,10 @@ export const FieldSelect = <
     size = 'md',
     selectProps,
     ...rest
-  } = otherProps;
+  } = otherProps as Omit<
+    FieldSelectProps<Option, IsMulti, Group>,
+    keyof FieldProps
+  >;
   const [isTouched, setIsTouched] = useState(false);
   const showError = !isValid && (isTouched || isSubmitted);
 
@@ -72,7 +75,9 @@ export const FieldSelect = <
     <FormGroup {...formGroupProps}>
       <Select
         id={id}
-        value={options?.find((option) => option.value === value) || ''}
+        value={
+          options?.find((option: TODO) => option.value === value) ?? undefined
+        }
         onBlur={() => setIsTouched(true)}
         placeholder={placeholder || 'Select...'}
         onChange={(fieldValue) =>
